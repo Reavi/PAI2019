@@ -9,6 +9,10 @@ class Routing {
     public function __construct()
     {
         $this->routes = [
+            'register' => [
+                'controller' => 'IndexController',
+                'action' => 'register'
+            ],
             'index' => [
                 'controller' => 'IndexController',
                 'action' => 'hello'
@@ -17,17 +21,17 @@ class Routing {
                 'controller' => 'LoginController',
                 'action' => 'login'
             ],
-            'register' => [
-                'controller' => 'RegisterController',
-                'action' => 'register'
+            'statute' => [
+                'controller' => 'IndexController',
+                'action' => 'statute'
             ]
+
         ];
     }
 
     public function run()
     {
         $page = isset($_GET['page']) ? $_GET['page'] : 'index';
-
         if (isset($this->routes[$page])) {
             $controller = $this->routes[$page]['controller'];
             $action = $this->routes[$page]['action'];

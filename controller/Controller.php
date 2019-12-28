@@ -20,8 +20,8 @@ class Controller {
 
     protected function render(string $template = null, array $variables = [])
     {
-        //$templatePath = $template ? dirname(__DIR__).'//views//'.get_class($this).'//'. $template.'.php' : '';
-        $templatePath = $template ? dirname(__DIR__).'/view/'. $template.'.php' : '';
+        $templatePath = $template ? dirname(__DIR__).'/views/'.get_class($this).'/'. $template.'.php' : '';
+        //$templatePath = $template ? dirname(__DIR__) . '/views/' . $template.'.php' : '';
         $output = 'File not found';
 
         if(file_exists($templatePath)){
