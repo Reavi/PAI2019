@@ -1,0 +1,90 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+.container{
+    background: #E6FBFF 0% 0% no-repeat padding-box;
+    margin: 0;
+    max-width: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: inherit;
+    align-items: center;
+}
+
+.opis {
+    text-align: left;
+    font: Bold 1em/1.1em Arial;
+    letter-spacing: 0;
+    color: #00ABB0;
+
+}
+
+.pole{
+
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 2px solid #BCE0FD;
+    border-radius: 10px;
+    width:100%;
+    margin-bottom: 2.5em;
+    /* font */
+    text-align: left;
+    font: 1.1em Arial;
+    line-height: 2.5em;
+    letter-spacing: 0;
+    color: #00ABB0;
+}
+
+.formPole{
+    width:20em;
+    text-align: center;
+}
+
+.buttonDefault{
+    line-height: 2.5em;
+    border: none;
+    border-radius: 9px;
+    width:100%;
+    /* font */
+    text-align: center;
+    font-size: 1.1em;
+    letter-spacing: 0;
+    color: #F2F2F2;
+}
+
+.buttonLight{
+    background: #99E6EE 0% 0% no-repeat padding-box;
+}
+
+.buttonDark{
+    background: #00ABB0 0% 0% no-repeat padding-box;
+}
+.napis{
+    margin-top:3em;
+    color: #00ABB0;
+    margin-bottom: 1em;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:30%;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:70%;
+    align-items: center;
+}
+#login{
+
+}
