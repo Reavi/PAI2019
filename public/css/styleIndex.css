@@ -70,6 +70,9 @@ body {
 .napis{
     color: #00ABB0;
 }
+.napisRed{
+    color:#FF0000;
+}
 
 .main{
     display: flex;

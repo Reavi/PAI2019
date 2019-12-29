@@ -24,6 +24,10 @@ class Routing {
             'statute' => [
                 'controller' => 'IndexController',
                 'action' => 'statute'
+            ],
+            'activate' => [
+                'controller' => 'IndexController',
+                'action' => 'activate'
             ]
 
         ];
