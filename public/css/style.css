@@ -1,0 +1,20 @@
+
+.buttonDefault{
+    line-height: 2.5em;
+    border: none;
+    border-radius: 9px;
+    width:100%;
+    /* font */
+    text-align: center;
+    font-size: 1.1em;
+    letter-spacing: 0;
+    color: #F2F2F2;
+}
+
+.buttonLight{
+    background: #99E6EE 0% 0% no-repeat padding-box;
+}
+
+.buttonDark{
+    background: #00ABB0 0% 0% no-repeat padding-box;
+}

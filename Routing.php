@@ -1,7 +1,7 @@
 <?php
 
 require_once 'controller/IndexController.php';
-require_once 'controller/LoginController.php';
+require_once 'controller/BoardController.php';
 
 class Routing {
     private $routes = [];
@@ -18,7 +18,7 @@ class Routing {
                 'action' => 'hello'
             ],
             'login' => [
-                'controller' => 'LoginController',
+                'controller' => 'IndexController',
                 'action' => 'login'
             ],
             'statute' => [
@@ -28,8 +28,15 @@ class Routing {
             'activate' => [
                 'controller' => 'IndexController',
                 'action' => 'activate'
+            ],
+            'addcard' => [
+                'controller' => 'IndexController',
+                'action' => 'addcard'
+            ],
+            'board' => [
+                'controller' => 'BoardController',
+                'action' => 'main'
             ]
-
         ];
     }
 

@@ -1,0 +1,48 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+.container{
+    margin:0;
+    padding: 0;
+    max-width: unset;
+    height: inherit;
+}
+.menu{
+    background-color: #00ABB0;
+    margin:0;
+    padding: 0;
+    width: 100%;
+}
+.content{
+    background-color: #FF0000;
+    margin:0;
+    padding: 0;
+}
+
+.menuPole {
+    width:12em;
+    text-align: center;
+}
+
+#menumain{
+    justify-content: center;
+}
+.col{
+    margin:0;
+    padding:0;
+}
+.row{
+    margin:0;
+    padding:0;
+}
+
+.leftpanel{
+    height: 100%;
+}

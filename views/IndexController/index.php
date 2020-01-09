@@ -1,7 +1,7 @@
 <?php include("mainIndex.php") ?>
 
     <div class="content">
-        <form id="login">
+        <form id="login" method="post" action="?page=login">
             <div class="formPole">
                 <div class="opis">E-mail</div>
                 <input class="pole" type="email" name="email">

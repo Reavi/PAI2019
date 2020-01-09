@@ -100,5 +100,43 @@ class IndexController extends Controller {
         }
         $this->render('addcard');
     }
+    public function addcard()
+    {
+        //dodac do bazy danych
+        echo $_POST['nb'];
+        echo $_POST['data'];
+        echo $_POST['cvv'];
+        echo $_POST['name'];
+        header("Location: index.php");
+    }
+    public function login()
+    {
+        $userRepository = new UserRepository();
 
+        if ($this->isPost()) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $user = $userRepository->getUser($email);
+
+            if (!$user) {
+                $this->render('index', ['messages' => ['User with this email not exist!']]);
+                return;
+            }
+
+            if ($user->getPassword() !== $password) {
+                $this->render('index', ['messages' => ['Wrong password!']]);
+                return;
+            }
+
+            $_SESSION["id"] = $user->getEmail();
+            $_SESSION["role"] = $user->getRole();
+
+            $url = "http://$_SERVER[HTTP_HOST]/kelner/";
+            header("Location: {$url}?page=board");
+            return;
+        }
+
+        $this->render('index');
+    }
 }
