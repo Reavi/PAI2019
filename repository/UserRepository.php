@@ -16,8 +16,7 @@ class UserRepository extends Repository {
                 Uprawnienia.role 
         FROM Uzytkownik,Uprawnienia 
         WHERE email = '$email'
-        AND Uzytkownik.IdUser=Uprawnienia.IdUprawnienia");
-
+        AND Uzytkownik.IdUprawnienia=Uprawnienia.IdUprawnienia");
         //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,9 +43,10 @@ class UserRepository extends Repository {
                 Uzytkownik.haslo,
                 Uprawnienia.role 
         FROM Uzytkownik,Uprawnienia 
-        WHERE Uzytkownik.IdUser=Uprawnienia.IdUprawnienia");
+        WHERE Uzytkownik.IdUprawnienia=Uprawnienia.IdUprawnienia");
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+
 }

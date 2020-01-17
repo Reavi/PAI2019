@@ -12,16 +12,19 @@
 }
 
 .buttonLight{
+
+    /*color*/
+    background: #99E6EE 0% 0% no-repeat padding-box;
+    border: none;
+}
+
+.buttonDark{
+    background: #00ABB0 0% 0% no-repeat padding-box;
+}
+.buttonFont {
     /* font */
     text-align: center;
     font-size: 1.1em;
     letter-spacing: 0;
     color: #F2F2F2;
-    /*color*/
-    background: #99E6EE 0% 0% no-repeat padding-box;
-    border-style: none;
-}
-
-.buttonDark{
-    background: #00ABB0 0% 0% no-repeat padding-box;
 }

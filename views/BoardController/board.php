@@ -22,34 +22,46 @@
 <body>
 <div class="container">
 <div class="row leftpanel">
-    <div class="col-lg-2 menu">
-        <div class="row">
+    <div class="menu">
+        <div class="row panelTop">
 
             <div class="col menuPole">
-                Witaj!
-                <?= $user->getName();?>
-                <?= $user->getSurname();?>
+                <div class="row center">
+                    <div class="col">
+                        <img src="public/img/Profile.png">
+                    </div>
+                </div>
+                <div class="row center Text opisTextColor" style="margin-top: 2em">
+                    <div clas="col">
+                        <?= $user->getName();?>
+                        <?= $user->getSurname();?>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="navbar " id="menumain">
+        <div class="row">
+
+        </div>
+        <div class="navbar center" >
             <ul class="navbar-nav">
                 <li class="menuPole nav-item ">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Znajdź Lokal</button></a>
+                    <a class="nav-link" href="?page=board"><button class="btn btn-primary btn-block buttonLight">Znajdź Lokal</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Porównaj ceny dania</button></a>
+                    <a class="nav-link" href="?page=compareprices"><button class="btn btn-primary btn-block buttonLight" disabled>Porównaj ceny dania</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Ulubione lokale</button></a>
+                    <a class="nav-link" href="?page=favoriteplaces"><button class="btn btn-primary btn-block buttonLight" disabled>Ulubione lokale</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Historia rezerwacji</button></a>
+                    <a class="nav-link" href="?page=bookinghistory"><button class="btn btn-primary btn-block buttonLight" disabled>Historia rezerwacji</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Historia płatności</button></a>
+                    <a class="nav-link" href="?page=paymenthistory"><button class="btn btn-primary btn-block buttonLight" disabled>Historia płatności</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Profil</button></a>
+                    <a class="nav-link" href="?page=profile"><button class="btn btn-primary btn-block buttonLight" disabled>Profil</button></a>
                 </li>
                 <li class="nav-item menuPole">
                     <a class="nav-link" href="?page=logout"><button class="btn btn-primary btn-block buttonLight">Wyloguj</button></a>
@@ -73,27 +85,55 @@
                 }
                 ?>
 
-
             </ul>
         </div>
+
+
+        <div class="navbar bottomPositionContent">
+            <ul class="navbar-nav ">
+                <li class="nav-item menuPole ">
+                    <a class="nav-link" href="?page=error"><button class="btn btn-primary btn-block buttonLight" disabled>Zgłość problem</button></a>
+
+                </li>
+            </ul>
+        </div>
+
+
+
     </div>
 
 
 
-    <div class="col-lg-10 content">
-        <div class="row">
-            <div class="col-xl">
-                <?= $title?>
+    <div class="col content">
+        <div class="row headerContent">
+            <div class="col-md-8 bottomPosition">
+                <h1 class="bottomPositionContent textArial bottomPositionContentCenter"><?= $title?></h1>
+            </div>
+            <div class="col-md-4">
+                <div clas="row">
+                    <div class="col-md-12">
+                        <div class="logo">
+                            <img align="center" src="public/img/logo.svg" width="50%" height="50%">
+                        </div>
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="Text logoTextColor">
+                            <h1>Wirtualny Kelner</h1>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
+        <?php include('page/findplace.php');
+        ?>
 
-        <div class="row">
-            <div class="col-xl">
-                kontent
-            </div>
 
-        </div>
+
+
     </div>
 </div>
 </div>
