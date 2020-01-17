@@ -1,6 +1,15 @@
 <?php include("mainIndex.php") ?>
 
     <div class="content">
+        <div class="formPole">
+            <?php
+            if(isset($messages)){
+                foreach($messages as $message) {
+                    echo "<div class=\"napisRed\">$message</div>";
+                }
+            }
+            ?>
+        </div>
         <form id="login" method="post" action="?page=login">
             <div class="formPole">
                 <div class="opis">E-mail</div>

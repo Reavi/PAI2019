@@ -5,6 +5,7 @@ class Controller {
 
     public function __construct()
     {
+        session_start();
         $this->request = $_SERVER['REQUEST_METHOD'];
     }
 
@@ -32,5 +33,13 @@ class Controller {
             $output = ob_get_clean();
         }
         print $output;
+    }
+    protected function checkSession()
+    {
+        if(!isset($_SESSION['id'])){
+            $url = "http://$_SERVER[HTTP_HOST]/kelner/";
+            header("Location: {$url}");
+            return;
+        }
     }
 }

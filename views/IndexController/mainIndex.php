@@ -1,3 +1,11 @@
+<?php
+if(isset($_SESSION['id']) and isset($_SESSION['role'])) {
+    header('Location: ?page=board');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">

@@ -1,3 +1,15 @@
+<?php
+    if(!isset($_SESSION['id']) and !isset($_SESSION['role'])) {
+            die('You are not logged in!');
+        }
+
+    if(!in_array('ROLE_USER', $_SESSION['role'])) {
+            die('You do not have permission to watch this page!');
+        }
+
+?>
+
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -10,45 +22,72 @@
 <body>
 <div class="container">
 <div class="row leftpanel">
-    <div class="col-sm-2 menu">
+    <div class="col-lg-2 menu">
         <div class="row">
+
             <div class="col menuPole">
-                profil;dasdasdas
+                Witaj!
+                <?= $user->getName();?>
+                <?= $user->getSurname();?>
             </div>
         </div>
         <div class="navbar " id="menumain">
             <ul class="navbar-nav">
                 <li class="menuPole nav-item ">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Znajdź Lokal</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Znajdź Lokal</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Porównaj ceny dania</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Porównaj ceny dania</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Ulubione lokale</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Ulubione lokale</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Historia rezerwacji</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Historia rezerwacji</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Historia płatności</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Historia płatności</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Profil</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-primary btn-block buttonLight">Profil</button></a>
                 </li>
                 <li class="nav-item menuPole">
-                    <a class="nav-link" href="#"><button class="buttonDefault buttonLight">Wyloguj</button></a>
+                    <a class="nav-link" href="?page=logout"><button class="btn btn-primary btn-block buttonLight">Wyloguj</button></a>
                 </li>
+                <?php
+                if(in_array('ROLE_ADMIN', $_SESSION['role'])) {
+                    ?>
+                <li class="nav-item menuPole">
+                    <a class="nav-link" href="?page=admin"><button class="btn btn-primary btn-block buttonLight">Admin Panel</button></a>
+                </li>
+                <?php
+                }
+                ?>
+                <?php
+                if(in_array('ROLE_ADMIN', $_SESSION['role']) ||in_array('ROLE_MENEGER', $_SESSION['role']) ) {
+                ?>
+                <li class="nav-item menuPole">
+                    <a class="nav-link" href="?page=manager"><button class="btn btn-primary btn-block buttonLight">Manager Panel</button></a>
+                </li>
+                <?php
+                }
+                ?>
+
+
             </ul>
         </div>
     </div>
 
 
 
-    <div class="col-sm-10 content">
+    <div class="col-lg-10 content">
         <div class="row">
-            <div class="col-xl">header</div>
+            <div class="col-xl">
+                <?= $title?>
+            </div>
         </div>
+
+
         <div class="row">
             <div class="col-xl">
                 kontent

@@ -35,7 +35,7 @@ class IndexController extends Controller {
             $res=$res->fetchAll(PDO::FETCH_ASSOC);
 
 
-            if($res[0]["email"]){
+            if(!empty($res[0]["email"])){
 
                 $key=$res[0]["key"];
                 $login = $res[0]["email"];
@@ -74,7 +74,9 @@ class IndexController extends Controller {
         $this->render('statute');
     }
     public function activate() {
-
+        if(!isset($_GET['key'])){
+            $this->render('index', ['messages' => ['Brak klucza aktywacyjnego!']]);
+        }
         $key=$_GET['key'];
         $db=new Database();
         $con = $db->connect();
@@ -82,8 +84,7 @@ class IndexController extends Controller {
         $res=$con->prepare("SELECT * FROM kelner.usersTmp WHERE usersTmp.key='$key'");
         $res->execute();
         $res=$res->fetchAll(PDO::FETCH_ASSOC);
-
-        if($res[0]["email"]){
+        if(!empty($res[0]["email"])){
             $permission=0;
             $name=$res[0]["name"];
             $surname=$res[0]["surname"];
@@ -96,7 +97,7 @@ class IndexController extends Controller {
             $res->execute();
 
         }else{
-
+            $this->render('index', ['messages' => ['Nie rozpoznano klucza aktywacyjnego!']]);
         }
         $this->render('addcard');
     }
@@ -107,7 +108,7 @@ class IndexController extends Controller {
         echo $_POST['data'];
         echo $_POST['cvv'];
         echo $_POST['name'];
-        header("Location: index.php");
+        header("Location: ");
     }
     public function login()
     {
@@ -120,12 +121,12 @@ class IndexController extends Controller {
             $user = $userRepository->getUser($email);
 
             if (!$user) {
-                $this->render('index', ['messages' => ['User with this email not exist!']]);
+                $this->render('index', ['messages' => ['Użytkownik z tym emailem nie istnieje!']]);
                 return;
             }
 
             if ($user->getPassword() !== $password) {
-                $this->render('index', ['messages' => ['Wrong password!']]);
+                $this->render('index', ['messages' => ['Złe hasło']]);
                 return;
             }
 
@@ -138,5 +139,11 @@ class IndexController extends Controller {
         }
 
         $this->render('index');
+    }
+
+    public function logout(){
+        session_unset();
+        session_destroy();
+        $this->render('index', ['messages' => ['Pomyślnie się wylogowałeś']]);
     }
 }

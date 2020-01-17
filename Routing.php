@@ -1,7 +1,7 @@
 <?php
 
-require_once 'controller/IndexController.php';
-require_once 'controller/BoardController.php';
+require_once 'controller/allController.php';
+
 
 class Routing {
     private $routes = [];
@@ -21,6 +21,10 @@ class Routing {
                 'controller' => 'IndexController',
                 'action' => 'login'
             ],
+            'logout' => [
+                'controller' => 'IndexController',
+                'action' => 'logout'
+            ],
             'statute' => [
                 'controller' => 'IndexController',
                 'action' => 'statute'
@@ -33,10 +37,33 @@ class Routing {
                 'controller' => 'IndexController',
                 'action' => 'addcard'
             ],
+
+            //BOARD
             'board' => [
                 'controller' => 'BoardController',
                 'action' => 'main'
+            ],
+            //ADMIN
+            'admin' => [
+                'controller' => 'AdminController',
+                'action' => 'index'
+            ],
+            'users' => [
+                'controller' => 'AdminController',
+                'action' => 'users'
+            ],
+
+            //MENEGER
+            'manager' => [
+                'controller' => 'ManagerController',
+                'action' => 'index'
+            ],
+            'place' => [
+                'controller' => 'PlaceController',
+                'action' => 'index'
             ]
+
+
         ];
     }
 
