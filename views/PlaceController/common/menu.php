@@ -9,7 +9,7 @@
             </div>
             <div class="row center Text opisTextColor" style="margin-top: 2em">
                 <div clas="col">
-                    nazwa lokalu dodac zpaytanie
+                    <?= $place->getName(); ?>
                 </div>
             </div>
 

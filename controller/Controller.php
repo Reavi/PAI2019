@@ -36,7 +36,7 @@ class Controller {
     }
     protected function checkSession()
     {
-        if(!isset($_SESSION['id'])){
+        if(!isset($_SESSION['id']) && !isset($_SESSION['idPlace'])){
             $url = "http://$_SERVER[HTTP_HOST]/kelner/";
             header("Location: {$url}");
             return;
