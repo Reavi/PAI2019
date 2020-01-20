@@ -9,17 +9,18 @@ if(!in_array('ROLE_ADMIN', $_SESSION['role'])) {
 
 ?>
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="Stylesheet" type="text/css" href="public/css/style.css" />
     <link rel="Stylesheet" type="text/css" href="public/css/board.css" />
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-    <?php include('views/common/head.php'); ?>
+    <?php include('common/head.php'); ?>
     <title>picmash</title>
 </head>
 <body>
-<?php include('views/common/navbar.php'); ?>
+<?php include('common/navbar.php'); ?>
 <div class="container">
     <div class="col-6">
         <table class="table mt-4 text-light">

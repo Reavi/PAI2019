@@ -39,10 +39,15 @@ class Routing
                 'action' => 'addcard'
             ],
 
+
             //BOARD
             'board' => [
                 'controller' => 'BoardController',
                 'action' => 'main'
+            ],
+            'errorBoard' => [
+                'controller' => 'BoardController',
+                'action' => 'error'
             ],
             //ADMIN
             'admin' => [
@@ -84,9 +89,15 @@ class Routing
             'activatePlace' => [
                 'controller' => 'PlaceController',
                 'action' => 'activateAccount'
+            ],
+            'errorPlace' => [
+                'controller' => 'PlaceController',
+                'action' => 'error'
+            ],
+            'errorSend' => [
+                'controller' => 'ErrorController',
+                'action' => 'errorSend'
             ]
-
-
         ];
     }
 

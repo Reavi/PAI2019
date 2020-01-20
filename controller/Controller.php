@@ -42,4 +42,9 @@ class Controller {
             return;
         }
     }
+    protected function mainPage(){
+        $url = "http://$_SERVER[HTTP_HOST]/kelner/";
+        header("Location: {$url}");
+        return;
+    }
 }

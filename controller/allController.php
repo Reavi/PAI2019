@@ -4,5 +4,6 @@ require_once 'controller/BoardController.php';
 require_once 'controller/AdminController.php';
 require_once 'controller/ManagerController.php';
 require_once 'controller/PlaceController.php';
+require_once 'controller/ErrorController.php';
 
 ?>
