@@ -5,7 +5,7 @@ require_once "models/Place.php";
 
 class PlaceRepository extends Repository {
 
-    public function getPlace(string $email): Place
+    public function getPlace(string $email)
     {
         $stmt = $this->database->connect()->prepare("SELECT *
                 FROM kelner.Lokal
@@ -14,7 +14,7 @@ class PlaceRepository extends Repository {
         $places=$stmt->fetch(PDO::FETCH_ASSOC);
         return $this->universalReturn($places);
     }
-    public function getPlaceForId(int $id): Place
+    public function getPlaceForId(int $id)
     {
         $stmt = $this->database->connect()->prepare("SELECT *
                 FROM kelner.Lokal

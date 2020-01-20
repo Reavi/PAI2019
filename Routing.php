@@ -3,7 +3,8 @@
 require_once 'controller/allController.php';
 
 
-class Routing {
+class Routing
+{
     private $routes = [];
 
     public function __construct()
@@ -75,6 +76,10 @@ class Routing {
             'registerPlace' => [
                 'controller' => 'PlaceController',
                 'action' => 'register'
+            ],
+            'loginPlace' => [
+                'controller' => 'PlaceController',
+                'action' => 'login'
             ],
             'activatePlace' => [
                 'controller' => 'PlaceController',

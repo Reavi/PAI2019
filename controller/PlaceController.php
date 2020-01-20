@@ -8,10 +8,10 @@ class PlaceController extends Controller
 {
     public function index(Place $place=null)
     {
-        $this->checkSession();
+        $this->checkPlaceSession();
         if($place==null){
             $pr=new PlaceRepository();
-            $place=$pr->getPlaceForId($_SESSION['id']);
+            $place=$pr->getPlaceForId($_SESSION['idPlace']);
         }
         $this->render('index', ['title' => 'Wybierz co chcesz zrobić', 'place' =>$place]);
     }
@@ -23,9 +23,34 @@ class PlaceController extends Controller
         }
         $this->render('register');
     }
+    public function login()
+    {
+        if($this->isPost()){
+            if($_POST['email']=="" || $_POST['password']==""){
+                $this->render('login', ['messages'=>['Uzupełnij wszystkie pola']]);
+                return;
+            }
+            $placeRepository= new PlaceRepository();
+            $place=$placeRepository->getPlace($_POST['email']);
+            if($place==null){
+                $this->render('login', ['messages'=>['Zły adres email']]);
+                return;
+            }
+            if($place->getPassword()!=$_POST['password']){
+                $this->render('login', ['messages'=>['Złe hasło']]);
+                return;
+            }
+            $_SESSION['idPlace']=$place->getId();
+            $this->render('index',['title' => 'Wybierz co chcesz zrobić', 'place' =>$place]);
 
+        }
+
+        $this->render('login');
+
+    }
     public function register()
     {
+
         if ($this->isPost()) {
             $email = $_POST['email'];
             $id = $_POST['id'];
@@ -82,6 +107,14 @@ class PlaceController extends Controller
             }
 
 
+        }
+        $this->index();
+    }
+    private function checkPlaceSession(){
+        if(!isset($_SESSION['idPlace'])){
+            $url = "http://$_SERVER[HTTP_HOST]/kelner/?page=loginPlace";
+            header("Location: {$url}");
+            return;
         }
     }
 }
