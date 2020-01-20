@@ -53,14 +53,32 @@ class Routing {
                 'action' => 'users'
             ],
 
-            //MENEGER
+            //MANEGER
             'manager' => [
                 'controller' => 'ManagerController',
                 'action' => 'index'
             ],
+            'addnewplace' => [
+                'controller' => 'ManagerController',
+                'action' => 'addNewAccount'
+            ],
+            'sendmailplace' => [
+                'controller' => 'ManagerController',
+                'action' => 'sendmailplace'
+            ],
+
+            //PLACE
             'place' => [
                 'controller' => 'PlaceController',
                 'action' => 'index'
+            ],
+            'registerPlace' => [
+                'controller' => 'PlaceController',
+                'action' => 'register'
+            ],
+            'activatePlace' => [
+                'controller' => 'PlaceController',
+                'action' => 'activateAccount'
             ]
 
 

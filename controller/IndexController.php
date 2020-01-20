@@ -19,7 +19,10 @@ class IndexController extends Controller
         $userRepository = new UserRepository();
         //jezeli formularz zostal wyslany
         if ($this->isPost()) {
-
+            if(!isset($_POST['email'])){
+                $this->render('register', ['messages' => ['Nie wpisales emailu!']]);
+                return;
+            }
             $email = $_POST['email'];
             $password = $_POST['password'];
             $user = $userRepository->getUser($email);
@@ -54,7 +57,7 @@ class IndexController extends Controller
                 $login = $_POST['email'];
                 $name = $_POST['name'];
             }
-            $emailTemplate = "models/email_template.php";
+            $emailTemplate = "mail/email_template.php";
             $message = file_get_contents($emailTemplate);
             $message = str_replace("[url]", "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], $message);
             $message = str_replace("[login]", $name, $message);
@@ -116,16 +119,16 @@ class IndexController extends Controller
     {
         //REST NEED
         //dodac do bazy danych
-        if(isset($_POST['nb']) and isset($_POST['data']) and isset($_POST['cvv']) and isset($_POST['name'])){
+        if (isset($_POST['nb']) and isset($_POST['data']) and isset($_POST['cvv']) and isset($_POST['name'])) {
             $db = new Database();
             $con = $db->connect();
 
             //$res = $con->prepare("SELECT * FROM kelner.usersTmp WHERE usersTmp.key='$key'");
             //$res->execute();
-            $db =null;
+            $db = null;
             $con = null;
             header("Location: ?page=board");
-        } else{
+        } else {
             header("Location: ?page=activate");
         }
         //echo $_POST['nb'];

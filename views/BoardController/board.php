@@ -67,14 +67,14 @@
                     <a class="nav-link" href="?page=logout"><button class="btn btn-primary btn-block buttonLight">Wyloguj</button></a>
                 </li>
                 <?php
-                if(in_array('ROLE_ADMIN', $_SESSION['role'])) {
-                    ?>
+                if(in_array('ROLE_ADMIN', $_SESSION['role'])) {?>
                 <li class="nav-item menuPole">
                     <a class="nav-link" href="?page=admin"><button class="btn btn-primary btn-block buttonLight">Admin Panel</button></a>
                 </li>
                 <?php
                 }
                 ?>
+
                 <?php
                 if(in_array('ROLE_ADMIN', $_SESSION['role']) ||in_array('ROLE_MENEGER', $_SESSION['role']) ) {
                 ?>

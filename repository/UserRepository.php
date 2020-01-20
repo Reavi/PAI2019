@@ -33,7 +33,34 @@ class UserRepository extends Repository {
             $user['IdUser']
         );
     }
+    public function getUserForId(int $id): ?User
+    {
+        $stmt = $this->database->connect()->prepare("
+        SELECT Uzytkownik.IdUser,
+                Uzytkownik.imie,
+                Uzytkownik.nazwisko,
+                Uzytkownik.email,
+                Uzytkownik.haslo,
+                Uprawnienia.role 
+        FROM Uzytkownik,Uprawnienia 
+        WHERE IdUser = '$id'
+        AND Uzytkownik.IdUprawnienia=Uprawnienia.IdUprawnienia");
+        //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($user == false) {
+            return null;
+        }
 
+        return new User(
+            $user['email'],
+            $user['haslo'],
+            $user['imie'],
+            $user['nazwisko'],
+            $user['role'],
+            $user['IdUser']
+        );
+    }
     public function getUsers(): array {
         $result = [];
         $stmt = $this->database->connect()->prepare("SELECT Uzytkownik.IdUser,

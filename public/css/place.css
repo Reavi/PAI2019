@@ -1,0 +1,105 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+.container{
+    max-width: unset;
+    height: inherit;
+    padding: 0;
+}
+.menu{
+    padding-top: 1em;
+    background-color: #00ABB0;
+}
+.content{
+    margin:0;
+    padding: 0;
+}
+
+.menuPole {
+    width:12em;
+    text-align: center;
+    justify-content: center;
+
+}
+.center {
+    justify-content: center;
+}
+#menumain{
+    justify-content: center;
+}
+.col{
+    margin:0;
+    padding:0;
+}
+.row{
+    margin:0;
+    padding:0;
+}
+
+.leftpanel{
+    height: 100%;
+}
+
+.panelTop {
+    margin-bottom: 5em;
+}
+
+.headerContent {
+    background-color: #E6FBFF;
+    color:#00ABB0;
+}
+.Text {
+    text-align: center;
+    font-family: Georgia;
+    letter-spacing: 0;
+}
+.logoTextColor{
+    color: #464646;
+}
+.opisTextColor{
+    color: #FFFFFF;
+}
+.logo{
+    text-align: center;
+}
+
+.textArial {
+    text-align: center;
+    font-family: Arial;
+    letter-spacing: 0;
+}
+
+.titleSubPage {
+
+}
+
+.bottomPosition {
+    position: relative;
+}
+
+.bottomPositionContent {
+    position: absolute;
+    bottom: 0;
+}
+.bottomPositionContentCenter {
+    left: 45%;
+}
+
+
+
+#map {
+    height: 100%;
+    width:100%;
+}
+
+
+.contentRegister {
+
+
+
+    width:60%;
+
+}

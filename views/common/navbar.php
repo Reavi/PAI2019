@@ -14,12 +14,16 @@
                     <i class="fas fa-user"></i> Manager
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="?page=admin">
-                    <i class="fas fa-users"></i> Admin panel
-                </a>
-            </li>
+            <?php
+            if(in_array('ROLE_ADMIN', $_SESSION['role'])) {?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?page=admin">
+                        <i class="fas fa-users"></i> Admin panel
+                    </a>
+                </li>
+            <?php
+            }
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="?page=logout">
                     <i class="fas fa-sign-out-alt"></i> Logout
