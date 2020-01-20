@@ -51,11 +51,7 @@
                     <button class="btn btn-primary btn-block buttonLight" disabled>Profil</button>
                 </a>
             </li>
-            <li class="nav-item menuPole">
-                <a class="nav-link" href="?page=logout">
-                    <button class="btn btn-primary btn-block buttonLight">Wyloguj</button>
-                </a>
-            </li>
+
             <?php
             if (in_array('ROLE_ADMIN', $_SESSION['role'])) { ?>
                 <li class="nav-item menuPole">
@@ -78,7 +74,22 @@
                 <?php
             }
             ?>
-
+            <?php
+            if (isset($_SESSION['idPlace'])) {
+                ?>
+                <li class="nav-item menuPole">
+                    <a class="nav-link" href="?page=place">
+                        <button class="btn btn-primary btn-block buttonLight">Lokal Panel</button>
+                    </a>
+                </li>
+                <?php
+            }
+            ?>
+            <li class="nav-item menuPole">
+                <a class="nav-link" href="?page=logout">
+                    <button class="btn btn-primary btn-block buttonLight">Wyloguj</button>
+                </a>
+            </li>
         </ul>
     </div>
 

@@ -19,3 +19,19 @@ function getUsers() {
             });
         });
 }
+
+
+
+function getMenu(positions) {
+    $("#contentMenu").attr('style','display:none');
+    $("#rp").attr('style','display:none');
+    $("#contentMenuOne").attr('style','display:block');
+    $("#prBack").attr('style','display:block');
+}
+
+function backMenu() {
+    $("#contentMenu").attr('style','display:block');
+    $("#rp").attr('style','display:block');
+    $("#contentMenuOne").attr('style','display:none');
+    $("#prBack").attr('style','display:none');
+}

@@ -3,7 +3,8 @@
 require_once "repository/Repository.php";
 require_once 'models/User.php';
 
-class UserRepository extends Repository {
+class UserRepository extends Repository
+{
 
     public function getUser(string $email): ?User
     {
@@ -20,7 +21,7 @@ class UserRepository extends Repository {
         //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($user == false) {
+        if ($user == false) {
             return null;
         }
 
@@ -33,7 +34,8 @@ class UserRepository extends Repository {
             $user['IdUser']
         );
     }
-    public function getUserForId(int $id): ?User
+
+    public function getUserForId(string $id): ?User
     {
         $stmt = $this->database->connect()->prepare("
         SELECT Uzytkownik.IdUser,
@@ -48,7 +50,7 @@ class UserRepository extends Repository {
         //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($user == false) {
+        if ($user == false) {
             return null;
         }
 
@@ -61,7 +63,9 @@ class UserRepository extends Repository {
             $user['IdUser']
         );
     }
-    public function getUsers(): array {
+
+    public function getUsers(): array
+    {
         $result = [];
         $stmt = $this->database->connect()->prepare("SELECT Uzytkownik.IdUser,
                 Uzytkownik.imie,

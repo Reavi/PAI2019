@@ -6,4 +6,5 @@ require_once 'controller/ManagerController.php';
 require_once 'controller/PlaceController.php';
 require_once 'controller/ErrorController.php';
 
+
 ?>

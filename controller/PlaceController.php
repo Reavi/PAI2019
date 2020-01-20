@@ -2,6 +2,7 @@
 require_once 'controller/Controller.php';
 require_once 'repository/AddressRepository.php';
 require_once 'repository/PlaceRepository.php';
+require_once 'repository/MenuRepository.php';
 
 
 class PlaceController extends Controller
@@ -43,8 +44,8 @@ class PlaceController extends Controller
                 return;
             }
             $_SESSION['idPlace'] = $place->getId();
-            $this->render('index', ['title' => 'Wybierz co chcesz zrobić', 'place' => $place]);
-
+            $this->render('index', ['title' => 'Wybierz co chcesz zrobić', 'user' => $place]);
+            return;
         }
 
         $this->render('login');
@@ -131,6 +132,62 @@ class PlaceController extends Controller
             'user'=>$this->getPlaceObject(),
         ]);
     }
+
+    public function menu(){
+        $this->checkSession();
+        $mr=new MenuRepository();
+        $res=$mr->getMenu($_SESSION['idPlace']);
+        /*
+        if($res==null){
+            $this->render('menu',[
+                'title'=>'Menu lokalu',
+                'user'=>$this->getPlaceObject(),
+                'menu'=>$res
+            ]);
+        }
+        */
+        $this->render('menu',[
+            'title'=>'Menu lokalu',
+            'user'=>$this->getPlaceObject(),
+            'menu'=>$res
+        ]);
+    }
+
+    public function addNewMenu(){
+        if($this->isPost()){
+            $mr=new MenuRepository();
+            $res=$mr->getMenu($_SESSION['idPlace']);
+            if($_POST['name']==""){
+                $this->render('menu',[
+                    'title'=>'Menu lokalu',
+                    'user'=>$this->getPlaceObject(),
+                    'menu'=>$res,
+                    'messages' =>['Nazwa nie może być pusta!']
+                ]);
+            }
+            $mr->addMenu($_POST['name'],$_SESSION['idPlace']);
+            $this->menu();
+        }
+
+        $this->index();
+    }
+    public function addPositionMenu(){
+        $this->checkSession();
+
+
+        $name=$_GET['name'];
+        $price=$_GET['price'];
+
+
+        $description=$_GET['description'];
+        $mr= new PositionMenuRepository();
+        $idmenu=$_GET['idmenu'];
+        $mr->addPosition($name,$price,$description,$idmenu);
+        header('Content-type: application/json');
+        http_response_code(200);
+        echo json_encode("working");
+    }
+
 
     private function getPlaceObject(): Place {
         $placeRepository = new PlaceRepository();

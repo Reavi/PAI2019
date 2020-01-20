@@ -17,7 +17,9 @@ body {
     margin:0;
     padding: 0;
 }
-
+.marginTop {
+    margin-top: 52em;
+}
 .menuPole {
     width:12em;
     text-align: center;
@@ -102,4 +104,18 @@ body {
 
     width:60%;
 
+}
+
+.infoBig {
+    color: #00ABB0;
+    font-size: 5em;
+
+}
+.fontColorDark {
+    color: #00ABB0;
+}
+
+#contentMenuOne,
+#prBack{
+    display: none;
 }

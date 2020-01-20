@@ -94,10 +94,31 @@ class Routing
                 'controller' => 'PlaceController',
                 'action' => 'error'
             ],
+
+            //Menu
+            'menu' => [
+                'controller' => 'PlaceController',
+                'action' => 'menu'
+            ],
+            'addNewMenu' => [
+                'controller' => 'PlaceController',
+                'action' => 'addNewMenu'
+            ],
+            'showMenu' => [
+                'controller' => 'PlaceController',
+                'action' => 'showMenu'
+            ],
+            'addPositionMenu' => [
+                'controller' => 'PlaceController',
+                'action' => 'addPositionMenu'
+            ],
+
+            //ERROR
             'errorSend' => [
                 'controller' => 'ErrorController',
                 'action' => 'errorSend'
             ]
+
         ];
     }
 

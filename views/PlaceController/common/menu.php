@@ -37,8 +37,8 @@
                 </a>
             </li>
             <li class="nav-item menuPole">
-                <a class="nav-link" href="?page=bookinghistory">
-                    <button class="btn btn-primary btn-block buttonLight" disabled>Menu</button>
+                <a class="nav-link" href="?page=menu">
+                    <button class="btn btn-primary btn-block buttonLight">Menu</button>
                 </a>
             </li>
             <li class="nav-item menuPole">
@@ -56,6 +56,17 @@
                     <button class="btn btn-primary btn-block buttonLight" disabled>Konto</button>
                 </a>
             </li>
+            <?php
+            if (isset($_SESSION['id'])) {
+                ?>
+                <li class="nav-item menuPole">
+                    <a class="nav-link" href="?page=board">
+                        <button class="btn btn-primary btn-block buttonLight">Lokal Panel</button>
+                    </a>
+                </li>
+                <?php
+            }
+            ?>
             <li class="nav-item menuPole">
                 <a class="nav-link" href="?page=logout">
                     <button class="btn btn-primary btn-block buttonLight">Wyloguj</button>

@@ -6,9 +6,9 @@ require_once 'repository/UserRepository.php';
 class BoardController extends Controller {
     public function main(){
         $this->checkSession();
-
+        $usr=$this->getuserObj();
         $this->render('board', [
-            'user' => $this->getuserObj(),
+            'user' => $usr,
             'title'=>'Znajdź Lokal',
             'selection'=>'main',
             'places'=>['Kraków','Warszawa']
@@ -26,7 +26,7 @@ class BoardController extends Controller {
 
     private function getuserObj(){
         $ur = new UserRepository();
-        return $ur->getUserForId($_SESSION['idPlace']);
+        return $ur->getUser($_SESSION['id']);
     }
 
 }

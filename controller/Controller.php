@@ -19,9 +19,11 @@ class Controller {
         return $this->request === 'POST';
     }
 
-    protected function render(string $template = null, array $variables = [])
+    protected function render(string $template = null, array $variables = [],string $inj = null)
     {
-        $templatePath = $template ? dirname(__DIR__).'/views/'.get_class($this).'/'. $template.'.php' : '';
+       $templatePath = $template ? dirname(__DIR__).'/views/'.get_class($this).'/'. $template.'.php' : '';
+
+
         //$templatePath = $template ? dirname(__DIR__) . '/views/' . $template.'.php' : '';
         $output = 'File not found';
 
