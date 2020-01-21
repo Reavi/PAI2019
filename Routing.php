@@ -49,6 +49,10 @@ class Routing
                 'controller' => 'BoardController',
                 'action' => 'error'
             ],
+            'getPlaceInCity' => [
+                'controller' => 'BoardController',
+                'action' => 'getPlaceInCity'
+            ],
             //ADMIN
             'admin' => [
                 'controller' => 'AdminController',

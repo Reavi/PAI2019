@@ -33,7 +33,7 @@ include('common/header.php');
                                         ?>
 
                                         <div id="<?= $id ?>" class="col-12">
-                                            <button onclick="getMenu('<?= $id ?>')"
+                                            <button style="margin-top: 1em" onclick="getMenu('<?= $id ?>')"
                                                     class="btn btn-primary buttonDefault buttonDark MenuBatton">
                                                 <?= $m['NazwaMenu'] ?>
                                             </button>

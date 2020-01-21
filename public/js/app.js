@@ -26,7 +26,7 @@ function getMenu(positions) {
     getPosition(id);
     $("#IdFormInputAddPosition")
         .empty().
-    append(`<input id='IdFormInputAddPositionVALUE' type='hidden' class='form-control' name='idmenu' placeholder='Wpisz nazwę' value='${id}' readonly='readonly'>`
+    append(`<input id='IdFormInputAddPositionVALUE' type='hidden' class='form-control' name='idmenu' value='${id}' readonly='readonly'>`
 
     );
     $("#contentMenu").attr('style', 'display:none');
@@ -80,7 +80,7 @@ function getPosition(id) {
                         </div>`);
 
     res.forEach(function (el) {
-        $con.append(`<div class="row" style="border-style:solid; border-color:red">
+        $con.append(`<div class="row" style="border-style:solid; border-color:red; margin-top: 1em;">
                         <div class="col-12">
                         <div class="row">
                         <div class="col-8">${el.Nazwa}</div>

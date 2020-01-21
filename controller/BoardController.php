@@ -7,14 +7,22 @@ class BoardController extends Controller {
     public function main(){
         $this->checkSession();
         $usr=$this->getuserObj();
+        $placeRepository = new PlaceRepository();
+        $city=$placeRepository->getCityAll();
         $this->render('board', [
             'user' => $usr,
             'title'=>'Znajdź Lokal',
             'selection'=>'main',
-            'places'=>['Kraków','Warszawa']
+            'places'=>$city
         ]);
     }
-
+    public function getPlaceInCity(){
+        $pr=new PlaceRepository();
+        $res=$pr->getPlaceInCity($_GET['city']);
+        header('Content-type: application/json');
+        http_response_code(200);
+        echo json_encode($res);
+    }
     public function error()
     {
         $this->checkSession();
