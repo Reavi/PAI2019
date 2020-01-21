@@ -93,6 +93,7 @@ class IndexController extends Controller
             $surname = $res[0]["surname"];
             $email = $res[0]["email"];
             $password = $res[0]["password"];
+            $password = md5($password);
             $id = $res[0]["id"];
             $res2 = $con->prepare("INSERT INTO kelner.Uzytkownik VALUES (NULL,'$name','$surname', '$email', '$password','$permission');");
             $res2->execute();
@@ -145,6 +146,7 @@ class IndexController extends Controller
         if ($this->isPost()) {
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $password = md5($password);
             $res = $this->setSession($email, $password);
 
             if ($res[0] == false) {
