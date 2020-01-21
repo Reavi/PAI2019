@@ -112,6 +112,11 @@ class Routing
                 'controller' => 'PlaceController',
                 'action' => 'addPositionMenu'
             ],
+            'getPositionMenu' => [
+                'controller' => 'PlaceController',
+                'action' => 'getPositionMenu'
+            ],
+
 
             //ERROR
             'errorSend' => [

@@ -66,7 +66,6 @@ class UserRepository extends Repository
 
     public function getUsers(): array
     {
-        $result = [];
         $stmt = $this->database->connect()->prepare("SELECT Uzytkownik.IdUser,
                 Uzytkownik.imie,
                 Uzytkownik.nazwisko,

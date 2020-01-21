@@ -187,7 +187,14 @@ class PlaceController extends Controller
         http_response_code(200);
         echo json_encode("working");
     }
-
+    public function getPositionMenu(){
+        $this->checkSession();
+        header('Content-type: application/json');
+        http_response_code(200);
+        $pr = new PositionMenuRepository();
+        $positions=$pr->getAllPosition($_GET['id']);
+        echo json_encode($positions);
+    }
 
     private function getPlaceObject(): Place {
         $placeRepository = new PlaceRepository();

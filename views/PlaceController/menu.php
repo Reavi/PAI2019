@@ -21,28 +21,37 @@ include('common/header.php');
                         if (!isset($menu)) {
                             echo "<div class='infoBig textArial darkColorFont'>Brak Menu ! :( </br> Stwórz jakieś!</div>";
                         } else {
-                            $id = "menuId" . $menu->getId();
                             ?>
                             <div id="contentMenu">
                                 <div class="row">
                                     <div class="col-12 darkColorFont Text">
                                         <h1>Twoje Menu</h1>
                                     </div>
+                                    <?php
+                                    foreach ($menu as $m) {
+                                        $id = "menuId" . $m['IdMenu'];
+                                        ?>
 
-                                    <div id="<?= $id ?>" class="col-12">
-                                        <button onclick="getMenu('<?= $id ?>')"
-                                                class="btn btn-primary buttonDefault buttonDark MenuBatton">
-                                            <?= $menu->getName() ?>
-                                        </button>
-                                    </div>
+                                        <div id="<?= $id ?>" class="col-12">
+                                            <button onclick="getMenu('<?= $id ?>')"
+                                                    class="btn btn-primary buttonDefault buttonDark MenuBatton">
+                                                <?= $m['NazwaMenu'] ?>
+                                            </button>
+                                        </div>
+
+                                        <?php
+                                    }
+
+                                    ?>
+
                                 </div>
                             </div>
                             <div id="contentMenuOne">
                                 <div class="row">
                                     <div class="col-12 darkColorFont Text">
-                                        <h1><?= $menu->getName() ?></h1>
+                                        <h1>NAZWA</h1>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" id="contentPosition">
 
 
                                         <div class="row" style="border-style:solid; border-color:red">
@@ -59,32 +68,6 @@ include('common/header.php');
                                             </div>
                                         </div>
 
-                                        <?php
-                                        $positions = $menu->getPositionMenu();
-                                        if (empty($positions)) {
-                                            echo "<div class='textArial darkColorFont'>Brak Pozycji! :( </br> dodaj jakieś!</div>";
-                                        } else {
-                                            foreach ($positions as $pos) {
-                                                ?>
-                                                <div class="row"
-                                                     style="border-style:solid; border-color:red; margin-top:1em;">
-                                                    <div class="col-12">
-                                                        <div class="row">
-                                                            <div class="col-8"><?= $pos['Nazwa'] ?></div>
-                                                            <div class="col-4"><?= $pos['Cena'] ?></div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <?= $pos['Opis'] ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                            }
-                                        }
-
-                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -93,6 +76,8 @@ include('common/header.php');
                         ?>
                     </div>
                 </div>
+
+
                 <div class="col-4">
                     <div class="row">
                         <div class="col-12" id="rp">
@@ -135,32 +120,14 @@ include('common/header.php');
                                     <label>Wpisz opis</label>
                                     <input type="text" class="form-control" name="description" placeholder="Wpisz opis">
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" name="idmenu" placeholder="Wpisz nazwę "
-                                           value="<?= $menu->getId() ?>" type="hidden">
+                                <div class="form-group" id="IdFormInputAddPosition">
+
                                 </div>
                                 <button type="button" onclick="addPositionMenuButton()"
                                         class="btn btn-primary buttonDefault buttonLight">
                                     Dodaj Pozycję
                                 </button>
                             </form>
-
-                            <script>
-                                function addPositionMenuButton() {
-                                    alert("S");
-                                    const apiUrl = "http://krystianmielec.eu/kelner/";
-                                    var data = $('#addPositionMenuForm').serialize();
-                                    alert(data);
-                                    $.ajax({
-                                        url: apiUrl + '?page=addPositionMenu',
-                                        data: data,
-                                        dataType: 'json'
-                                    }).done((res) => {
-                                        alert(res);
-                                    });
-                                }
-                            </script>
-
                         </div>
                     </div>
 

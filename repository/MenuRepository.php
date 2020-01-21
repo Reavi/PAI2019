@@ -8,22 +8,16 @@ class MenuRepository extends Repository
 {
 
 
-    public function getMenu(int $idLokal): ?Menu
+    public function getMenu(int $idLokal): ?Array
     {
-
+        $resultFinal=[];
         $stmt = $this->database->connect()->prepare("SELECT * FROM kelner.Menu WHERE IdLokal=$idLokal");
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($result == false) {
             return null;
         }
-        $positionMenuRepo = new PositionMenuRepository();
-        return new Menu (
-            $result['IdMenu'],
-            $result['IdLokal'],
-            $result['NazwaMenu'],
-            $positionMenuRepo->getAllPosition($result['IdMenu'])
-        );
+        return $result;
     }
     public function getMenuForId(int $idmenu): ?Menu
     {
