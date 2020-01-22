@@ -7,14 +7,14 @@ class User
     private $password;
     private $name;
     private $surname;
-    private $role = ['ROLE_USER'];
+    private $role;
 
     public function __construct(
         string $email,
         string $password,
         string $name,
         string $surname,
-        string $role,
+        array $role,
         int $id = null
     )
     {
@@ -22,10 +22,7 @@ class User
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
-
-        if ($role != 'ROLE_USER') {
-            array_push($this->role, $role);
-        }
+        $this->role=$role;
         if ($id != null) {
             $this->id = $id;
         }

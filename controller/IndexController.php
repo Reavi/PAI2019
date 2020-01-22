@@ -5,7 +5,7 @@ require_once 'repository/UserRepository.php';
 require_once 'models/User.php';
 require_once 'config/emailTemplateConst.php';
 require_once 'config/role.php';
-
+require_once 'repository/CardRepository.php';
 
 class IndexController extends Controller
 {
@@ -79,64 +79,44 @@ class IndexController extends Controller
     {
         if (!isset($_GET['key'])) {
             $this->render('index', ['messages' => ['Brak klucza aktywacyjnego!']]);
+            return;
         }
+        $userRepo=new UserRepository();
         $key = $_GET['key'];
-        $db = new Database();
-        $con = $db->connect();
-
-        $res = $con->prepare("SELECT * FROM kelner.usersTmp WHERE usersTmp.key='$key'");
-        $res->execute();
-        $res = $res->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($res[0]["email"])) {
-            $permission = ROLE_USER;
-            $name = $res[0]["name"];
-            $surname = $res[0]["surname"];
-            $email = $res[0]["email"];
-            $password = $res[0]["password"];
-            $password = md5($password);
-            $id = $res[0]["id"];
-            $res2 = $con->prepare("INSERT INTO kelner.Uzytkownik VALUES (NULL,'$name','$surname', '$email', '$password','$permission');");
-            $res2->execute();
-            $res = $con->prepare("DELETE FROM kelner.usersTmp WHERE usersTmp.id='$id'");
-            $res->execute();
-            $res = $this->setSession($email, $password);
-            if ($res[0] == false) {
-                $this->render('index', ['messages' => [$res[1]]]);
-                return;
-            }
-            $_SESSION['card'] = true;
-            $db = null;
-            $con = null;
-            $this->render('addcard');
-        } else {
-            $db = null;
-            $con = null;
+        $res=$userRepo->checkKey($key);
+        if (empty($res)) {
             $this->render('index', ['messages' => ['Nie rozpoznano klucza aktywacyjnego!']]);
+            return;
         }
+        //znalazlo taki klucz i mamy dane
+        $name = $res["name"];
+        $surname = $res["surname"];
+        $email = $res["email"];
+        $password = $res["password"];
+        $password = md5($password);
+        $id = $res["id"];
+        $userRepo->addNewUser($name,$surname,$email,$password,$id);
+        $res = $this->setSession($email, $password);
+        if ($res[0] == false) {
+            $this->render('index', ['messages' => [$res[1]]]);
+            return;
+        }
+        $_SESSION['card'] = true;
+        $this->render('addcard');
 
     }
 
     public function addcard()
     {
-        //REST NEED
-        //dodac do bazy danych
         if (isset($_POST['nb']) and isset($_POST['data']) and isset($_POST['cvv']) and isset($_POST['name'])) {
-            $db = new Database();
-            $con = $db->connect();
-
-            //$res = $con->prepare("SELECT * FROM kelner.usersTmp WHERE usersTmp.key='$key'");
-            //$res->execute();
-            $db = null;
-            $con = null;
+            $cardRepository = new CardRepository();
+            $userRepo= new UserRepository();
+            $user=$userRepo->getUser($_SESSION['id']);
+            $cardRepository->addCard($_POST['name'],$_POST['surname'],$_POST['cvv'],$_POST['data'],$user->getId());
             header("Location: ?page=board");
         } else {
             header("Location: ?page=activate");
         }
-        //echo $_POST['nb'];
-        //echo $_POST['data'];
-        //echo $_POST['cvv'];
-        // echo $_POST['name'];
-
     }
 
     public function login()
@@ -176,6 +156,7 @@ class IndexController extends Controller
     {
         $userRepository = new UserRepository();
         $user = $userRepository->getUser($email);
+        $permission = $userRepository->getUserPermission($user->getId());
         if (!$user) {
             return [false, "Użytkownik z tym emailem nie istnieje!"];
         }
@@ -185,7 +166,7 @@ class IndexController extends Controller
         }
 
         $_SESSION["id"] = $user->getEmail();
-        $_SESSION["role"] = $user->getRole();
+        $_SESSION["role"] = $permission;
         return [true, "Pomyślnie zalogowano"];
     }
 }

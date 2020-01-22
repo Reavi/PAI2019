@@ -22,8 +22,16 @@ class PositionMenuRepository extends Repository
                                 int $idMenu)
     {
 
-        $stmt=$this->database->connect()->prepare("INSERT INTO kelner.PozycjaWMenu VALUES(NULL,'$name','$price', '$idMenu','$description')");
+        $stmt = $this->database->connect()->prepare("INSERT INTO kelner.PozycjaWMenu VALUES(NULL,'$name','$price', '$idMenu','$description')");
         $stmt->execute();
 
+    }
+
+    public function deletePosition(int $id)
+    {
+        $con=$this->database->connect();
+        $stmt=$con->prepare("DELETE FROM kelner.PozycjaWMenu WHERE IdPozycja=$id");
+        $stmt->execute();
+        return $stmt;
     }
 }

@@ -9,11 +9,14 @@ class BoardController extends Controller {
         $usr=$this->getuserObj();
         $placeRepository = new PlaceRepository();
         $city=$placeRepository->getCityAll();
+        $userRep = new UserRepository();
+        $places= $userRep->getUserLocalWithName($usr->getId());
         $this->render('board', [
             'user' => $usr,
             'title'=>'Znajdź Lokal',
             'selection'=>'main',
-            'places'=>$city
+            'places'=>$city,
+            'lokale'=>$places
         ]);
     }
     public function getPlaceInCity(){

@@ -99,6 +99,7 @@ class Routing
                 'action' => 'error'
             ],
 
+
             //Menu
             'menu' => [
                 'controller' => 'PlaceController',
@@ -120,7 +121,14 @@ class Routing
                 'controller' => 'PlaceController',
                 'action' => 'getPositionMenu'
             ],
-
+            'deleteMenu' => [
+                'controller' => 'PlaceController',
+                'action' => 'deleteMenu'
+            ],
+            'deletePosition' => [
+                'controller' => 'PlaceController',
+                'action' => 'deletePosition'
+            ],
 
             //ERROR
             'errorSend' => [

@@ -25,9 +25,7 @@ function getMenu(positions) {
     var id = parseInt(positions.substring(6));
     getPosition(id);
     $("#IdFormInputAddPosition")
-        .empty().
-    append(`<input id='IdFormInputAddPositionVALUE' type='hidden' class='form-control' name='idmenu' value='${id}' readonly='readonly'>`
-
+        .empty().append(`<input id='IdFormInputAddPositionVALUE' type='hidden' class='form-control' name='idmenu' value='${id}' readonly='readonly'>`
     );
     $("#contentMenu").attr('style', 'display:none');
     $("#rp").attr('style', 'display:none');
@@ -67,8 +65,8 @@ function getPosition(id) {
     }).done((res) => {
 
         $con.empty();
-        $con.append(`<div class="row" style="border-style:solid; border-color:red">
-                        <div class="col-12">
+        $con.append(`<div class="row" >
+                        <div class="col-10" style="border-style:solid; border-color:blueviolet">
                         <div class="row">
                         <div class="col-8">Nazwa</div>
                         <div class="col-4">Cena</div>
@@ -77,21 +75,50 @@ function getPosition(id) {
                         <div class="col-12">
                         Opis
                         </div>
-                        </div>`);
+                        </div>
+                        </div>
+                        <div class="col-2"> Usuń</div></div>`);
 
-    res.forEach(function (el) {
-        $con.append(`<div class="row" style="border-style:solid; border-color:red; margin-top: 1em;">
-                        <div class="col-12">
-                        <div class="row">
-                        <div class="col-8">${el.Nazwa}</div>
-                        <div class="col-4">${el.Cena}</div>
-                        </div>
-                        <div class="row">
-                        <div class="col-12">
-                        ${el.Opis}
-                        </div>
+        res.forEach(function (el) {
+            console.log(el);
+            $con.append(`<div id="PositionId${el.IdMenu}" class="row" style=" margin-top: 1em;" >
+                            <div class="col-10" style="border-style:solid; border-color:blueviolet;">
+                                <div class="row">
+                                    <div class="col-8">${el.Nazwa}</div>
+                                    <div class="col-4">${el.Cena}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        ${el.Opis}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2"><button onclick="deletePosition(${el.IdPozycja} , ${el.IdMenu})"
+                                                    class="btn btn-danger buttonDefault MenuBatton">
+                                                X
+                                            </button></div>
                         </div>`);
-    });
+        });
     });
 }
 
+function deleteMenu(id) {
+    id = parseInt(id.substring(6));
+    $.post("?page=deleteMenu", {id: id})
+        .done((data) => {
+            alert(data);
+        });
+
+
+}
+
+function deletePosition(id,idmenu)
+{
+    $.post("?page=deletePosition", {id: id})
+        .done((data) => {
+            alert(data);
+            var str="#PositionId"+idmenu;
+            $(str).empty();
+        });
+
+}

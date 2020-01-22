@@ -49,8 +49,12 @@ if(isset($_SESSION['id']) and isset($_SESSION['role']) and isset($_SESSION['card
                 <input class="pole col-sm-6" name="data" type="date"><input name="cvv" class="pole col-sm-6" type="text">
             </div>
             <div class="formPole">
-                <div class="napis numbercart">IMIĘ i NAZWISKO</div>
+                <div class="napis numbercart">IMIĘ</div>
                 <input class="pole" name="name" type="text">
+            </div>
+            <div class="formPole">
+                <div class="napis numbercart">NAZWISKO</div>
+                <input class="pole" name="surname" type="text">
             </div>
             <div class="formPole">
                 <div class="napis"><i>W celu potwierdzenaia autetyczności karty, z konta zostanie pobrany 1 grosz, który zostanie odbity przy pierwszej płatności w aplikacji</i>

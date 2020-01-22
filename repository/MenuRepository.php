@@ -42,5 +42,11 @@ class MenuRepository extends Repository
         INSERT INTO kelner.Menu VALUES (NULL,'$idPlace','$name')");
         $stmt->execute();
     }
-
+    public function deleteMenu(int $id)
+    {
+        $con=$this->database->connect();
+        $stmt=$con->prepare("DELETE FROM kelner.Menu WHERE IdMenu=$id");
+        $stmt->execute();
+        return $stmt;
+    }
 }

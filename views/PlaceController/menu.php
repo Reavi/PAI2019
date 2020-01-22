@@ -24,21 +24,29 @@ include('common/header.php');
                             ?>
                             <div id="contentMenu">
                                 <div class="row">
-                                    <div class="col-12 darkColorFont Text">
+                                    <div class="col-10 darkColorFont Text">
                                         <h1>Twoje Menu</h1>
+                                    </div>
+                                    <div class="col-2 darkColorFont Text textRed">
+                                        <h1>Usuń</h1>
                                     </div>
                                     <?php
                                     foreach ($menu as $m) {
                                         $id = "menuId" . $m['IdMenu'];
                                         ?>
 
-                                        <div id="<?= $id ?>" class="col-12">
+                                        <div id="<?= $id ?>" class="col-10">
                                             <button style="margin-top: 1em" onclick="getMenu('<?= $id ?>')"
                                                     class="btn btn-primary buttonDefault buttonDark MenuBatton">
                                                 <?= $m['NazwaMenu'] ?>
                                             </button>
                                         </div>
-
+                                        <div class="col-2">
+                                            <button style="margin-top: 1em" onclick="deleteMenu('<?= $id ?>')"
+                                                    class="btn btn-danger buttonDefault MenuBatton">
+                                                X
+                                            </button>
+                                        </div>
                                         <?php
                                     }
 

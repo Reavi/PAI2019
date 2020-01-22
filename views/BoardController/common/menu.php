@@ -8,10 +8,47 @@
                 </div>
             </div>
             <div class="row center Text opisTextColor" style="margin-top: 2em">
-                <div clas="col">
+                <div clas="col-12">
                     <?= $user->getName(); ?>
                     <?= $user->getSurname(); ?>
                 </div>
+                <?php
+                if ($user->getRole() > 1) { ?>
+
+                    <div class="col-12">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="przykladowaLista"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Skocz do innego miejsca
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="przykladowaLista">
+                                <a class="dropdown-item" href="?page=board">Aplikacja</a>
+                                <?php
+                                if (in_array('ROLE_ADMIN', $_SESSION['role'])) {
+                                    echo "<a class=\"dropdown-item\" href=\"?page=admin\">Admin panel</a>";
+                                }
+                                if (in_array('ROLE_MANAGER', $_SESSION['role'])) {
+                                    echo "<a class='dropdown-item' href='?page=manager'>Manager panel</a>";
+                                }
+                                if (in_array('ROLE_PLACE', $_SESSION['role'])) {
+                                    if (isset($lokale)) {
+                                        foreach ($lokale as $lokal) {
+                                            echo "<div class=\"dropdown-divider\"></div>";
+                                            echo "<a class='dropdown-item' href='?page=place&id=" . $lokal['IdLokal'] . "'>" . $lokal['NazwaLokalu'] . "</a>";
+                                        }
+
+                                    }
+                                }
+                                ?>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
 
         </div>
@@ -52,39 +89,7 @@
                 </a>
             </li>
 
-            <?php
-            if (in_array('ROLE_ADMIN', $_SESSION['role'])) { ?>
-                <li class="nav-item menuPole">
-                    <a class="nav-link" href="?page=admin">
-                        <button class="btn btn-primary btn-block buttonLight">Admin Panel</button>
-                    </a>
-                </li>
-                <?php
-            }
-            ?>
 
-            <?php
-            if (in_array('ROLE_ADMIN', $_SESSION['role']) || in_array('ROLE_MENEGER', $_SESSION['role'])) {
-                ?>
-                <li class="nav-item menuPole">
-                    <a class="nav-link" href="?page=manager">
-                        <button class="btn btn-primary btn-block buttonLight">Manager Panel</button>
-                    </a>
-                </li>
-                <?php
-            }
-            ?>
-            <?php
-            if (isset($_SESSION['idPlace'])) {
-                ?>
-                <li class="nav-item menuPole">
-                    <a class="nav-link" href="?page=place">
-                        <button class="btn btn-primary btn-block buttonLight">Lokal Panel</button>
-                    </a>
-                </li>
-                <?php
-            }
-            ?>
             <li class="nav-item menuPole">
                 <a class="nav-link" href="?page=logout">
                     <button class="btn btn-primary btn-block buttonLight">Wyloguj</button>
