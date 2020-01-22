@@ -34,7 +34,28 @@ class BoardController extends Controller {
             'user'=>$this->getUserObj(),
         ]);
     }
+    public function getPlace(){
+        $idplace=$_GET['id'];
+        $placeRepository=new PlaceRepository();
+        $place = $placeRepository->getPlaceForId($idplace);
+        $tables = $placeRepository->getTable($idplace);
+        $ad=$place->getAddress();
+        $result=[
+            'place'=>[
+                'id'=>$place->getId(),
+                'name'=>$place->getName(),
+                'miasto' => $ad->getMiasto(),
+                'ulica' => $ad->getUlica(),
+                'kodpocztowy' => $ad->getKodPocztowy(),
+                'blok' => $ad->getBlok(),
+                'mieszkanie' =>$ad->getMieszkanie()
+            ],
+            'tables'=>$tables];
+        header('Content-type: application/json');
+        http_response_code(200);
+        echo json_encode($result);
 
+    }
     private function getuserObj(){
         $ur = new UserRepository();
         return $ur->getUser($_SESSION['id']);

@@ -13,7 +13,7 @@
                     <?= $user->getSurname(); ?>
                 </div>
                 <?php
-                if ($user->getRole() > 1) { ?>
+                if (count($user->getRole()) > 1) { ?>
 
                     <div class="col-12">
                         <div class="dropdown">
@@ -40,17 +40,11 @@
                                     }
                                 }
                                 ?>
-
-
                             </div>
                         </div>
-
                     </div>
-                    <?php
-                }
-                ?>
+                <?php } ?>
             </div>
-
         </div>
     </div>
     <div class="row">

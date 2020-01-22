@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="findplaceformdivget">
     <div class="col-12">
         <div id="chooseCity">
             <form id="findplaceFormChooseCity">

@@ -17,29 +17,48 @@ class PlaceController extends Controller
 
         $pr = new PlaceRepository();
         $place = $pr->getPlaceForId($idPlace);
+        $userRep = new UserRepository();
+        $usr=$userRep->getUser($_SESSION['id']);
+        $places= $userRep->getUserLocalWithName($usr->getId());
         $_SESSION['idPlace'] = $idPlace;
-        $this->render('index', ['title' => 'Wybierz co chcesz zrobić', 'user' => $place]);
+        $this->render('index', [
+            'title' => 'Wybierz co chcesz zrobić',
+            'user'=> $usr,
+            'lokal' => $place,
+            'lokale'=>$places]);
     }
 
     public function error()
     {
         $this->checkSession();
+
+        $userRep = new UserRepository();
+        $usr=$userRep->getUser($_SESSION['id']);
+        $places= $userRep->getUserLocalWithName($usr->getId());
+
+
         $this->render('error', [
             'title' => 'Zgłoś problem',
-            'user' => $this->getPlaceObject(),
+            'user'=> $usr,
+            'lokal' => $this->getPlaceObject(),
+            'lokale'=>$places
         ]);
     }
 
     public function menu()
     {
         $this->prepare();
-
+        $userRep = new UserRepository();
+        $usr=$userRep->getUser($_SESSION['id']);
+        $places= $userRep->getUserLocalWithName($usr->getId());
         $mr = new MenuRepository();
         $res = $mr->getMenu($_SESSION['idPlace']);
         $this->render('menu', [
             'title' => 'Menu lokalu',
-            'user' => $this->getPlaceObject(),
-            'menu' => $res
+            'menu' => $res,
+            'user'=> $usr,
+            'lokal' => $this->getPlaceObject(),
+            'lokale'=>$places
         ]);
     }
 

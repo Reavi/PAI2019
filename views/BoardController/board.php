@@ -30,13 +30,14 @@ if (!in_array('ROLE_USER', $_SESSION['role'])) {
         <div class="col content">
             <!--header content-->
             <?php include('common/headerContent.php'); ?>
+
             <!-- content content-->
 
 
             <?php
             include('page/findplace.php');
             ?>
-
+            <?php include('page/contentPanelPlace.php'); ?>
 
         </div>
     </div>
