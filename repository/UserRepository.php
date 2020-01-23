@@ -140,4 +140,16 @@ class UserRepository extends Repository
         }
         return $result;
     }
+
+
+    public function getReservation(int $idUser)
+    {
+        $sql = "SELECT *
+                FROM Stolik
+                RIGHT JOIN Rezerwacje R on Stolik.IdStolik = R.IdStolik;";
+        $con=$this->database->connect();
+        $stmt=$con->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

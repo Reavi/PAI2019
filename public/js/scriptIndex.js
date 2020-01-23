@@ -49,7 +49,7 @@ function getPanelPlace(id) {
             d.append(`<div class="col-12"><h1>Brak wolnych stolików! Przepraszamy i zapraszamy ponownie!</h1></div>`);
         }
         tables.forEach((table)=>{
-            d.append(`<div class="col-12"><button style="margin-top: 1em" class="btn btn-primary buttonDefault buttonDark MenuBatton">Ilość osób przy stoliku: ${table.IloscMiejsc}</button></div>`)
+            d.append(`<div class="col-12"><button style="margin-top: 1em" onclick="setReservation(${table.IdStolik},${place.id})" class="btn btn-primary buttonDefault buttonDark MenuBatton">Ilość osób przy stoliku: ${table.IloscMiejsc}</button></div>`)
         })
     }).fail((res)=>{
         alert("fail");
@@ -60,4 +60,23 @@ function getPanelPlace(id) {
 function backMenuBoard() {
     $("#findplaceformdivget").attr('style','display:');
     $("#ResultPanelPlaceContent").attr('style','display:none');
+}
+
+function setReservation(idTable,idplace) {
+    const apiUrl = "http://krystianmielec.eu/kelner/";
+    $.ajax({
+        url: apiUrl + '?page=setReservationTable',
+        data: {id:idTable},
+        dataType: 'json'
+    }).done((res)=> {
+        alert(res);
+        getPanelPlace(idplace);
+        console.log(res);
+    }).fail((res)=>{
+        alert(res);
+        console.log(res);
+        getPanelPlace(idplace);
+    });
+
+    getPanelPlace(idplace);
 }

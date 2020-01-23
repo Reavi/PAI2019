@@ -101,4 +101,27 @@ class PlaceRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
+    public function setReservation(int $idTable, int $idUser)
+    {
+        $con=$this->database->connect();
+        $con->beginTransaction();
+        try{
+            $stmt=$con->prepare("SELECT * FROM Rezerwacje WHERE IdStolik='$idTable'");
+            $stmt->execute();
+            $res=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($res)){
+                throw new Exception("Ktoś w między czasie już zarezerwował stolik :(");
+            }else{
+                $date=date("Y-m-d H:i:s");
+                $stmt=$con->prepare("INSERT INTO Rezerwacje VALUES(NULL,'$date','$idUser','$idTable',true) ");
+                $stmt->execute();
+                $con->commit();
+            }
+
+        }catch (Exception $e){
+            $con->rollBack();
+            return $e->getMessage();
+        }
+
+    }
 }

@@ -58,6 +58,14 @@ class Routing
                 'action' => 'getPlace'
             ],
 
+            'setReservationTable' => [
+                'controller' => 'BoardController',
+                'action' => 'setReservationTable'
+            ],
+            'bookinghistory' => [
+                'controller' => 'BoardController',
+                'action' => 'bookinghistory'
+            ],
             //ADMIN
             'admin' => [
                 'controller' => 'AdminController',

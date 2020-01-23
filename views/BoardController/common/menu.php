@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item menuPole">
                 <a class="nav-link" href="?page=bookinghistory">
-                    <button class="btn btn-primary btn-block buttonLight" disabled>Historia rezerwacji</button>
+                    <button class="btn btn-primary btn-block buttonLight">Historia rezerwacji</button>
                 </a>
             </li>
             <li class="nav-item menuPole">
